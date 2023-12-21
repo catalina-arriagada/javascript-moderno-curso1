@@ -11,7 +11,7 @@ console.log(numeros);//Array(3)
 
 //Se pueden agrupar objetos tambien dentro de arreglo, 
 //y poner arreglos dentro de arreglo: "arreglo de arreglos"
-const deTodo =['hola',10,true,'si',null,{nombre:'juan',trabajo:'programador'},[1,2,3]];
+const deTodo =['hola',10,true,'si',null,persona={nombre:'juan',trabajo:'programador'},[1,2,3]];
 console.log(deTodo);
 
 

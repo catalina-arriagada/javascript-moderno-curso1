@@ -17,6 +17,8 @@ const producto = {
     }
 }
 
+//const {disponible,info:{medidas:{persona1}}}= producto;
+
 const{nombre, info, info: {fabricacion, fabricacion:{pais}}}=producto; //acceder a pais
 console.log(nombre);
 console.log(fabricacion);

@@ -33,4 +33,5 @@ resultado = [...carrito, producto];
 console.log(resultado);
 
 resultado = [...carrito, producto2];//agrega otro elemento al array
+//INCLUYE TODO LO DE CARRITO Y AGREGA ADEMAS PRODUCTO2
 resultado = [producto3, ...carrito];//aqui agrega otro elemento pero al principio

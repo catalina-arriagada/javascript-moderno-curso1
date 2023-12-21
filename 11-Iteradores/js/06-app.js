@@ -41,6 +41,6 @@ const carrito = [
     producto.nombre;
   });//no imprime nada porque esta dentro de una variable
 
-  const nuevoArreglo2=carrito.forEach(producto => producto.nombre);
+  const nuevoArreglo2=carrito.map(producto => producto.nombre);
   //imprime porque es .map y crea arreglo nuevo porque llena
   //la variable por cada iteracion

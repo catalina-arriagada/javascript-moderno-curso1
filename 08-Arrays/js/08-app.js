@@ -31,6 +31,8 @@ console.log(tercero1);
 
 //Quiero que el primer y segundo valor, pero que los ultimos esten en su propio arreglo
 const [ primero1, segundo1, ...tercero2] = numeros; //con SPREAD
+//los 3 puntos quieren decir varios elementos o un arreglo completo con varios elementos dentro.
+//Es decir, los ... crean un arreglo nuevo (copia)con varios elementos dentro
 console.log(tercero2); //[30,40,50]
 //tercero2 incluye arreglo con 30, 40, y 50
 //Es decir, todos los valores que no sean parte del array destructuring (primero y segundo)
