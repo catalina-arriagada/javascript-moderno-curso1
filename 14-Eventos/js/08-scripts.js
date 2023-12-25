@@ -1,3 +1,5 @@
+//tercera forma de evitar bubbling: asociarlo a función
+
 // Evitar la propagación con contenido creado...
 const parrafo1 = document.createElement('P');
 parrafo1.textContent = 'Concierto';
@@ -13,6 +15,16 @@ parrafo2.classList.add('titulo');
 const parrafo3 = document.createElement('p');
 parrafo3.textContent = '$800 por persona';
 parrafo3.classList.add('precio');
+//esto lo escribo yo:
+parrafo3.onclick = nuevaFuncion; //le estamos asociando una funcion cuando le demos click al precio
+//O con parametros:
+parrafo3.onclick = function () {
+    nuevaFuncion(1);
+}
+//o con arrow function:
+parrafo3.onclick = () =>  {
+    nuevaFuncion(1);
+}
 
 // crear el div...
 const info = document.createElement('div');
@@ -38,3 +50,13 @@ contenedorCard.appendChild(info);
 // Insertarlo en el HTML...
 const contenedor = document.querySelector('.hacer .contenedor-cards');
 contenedor.appendChild(contenedorCard); // al inicio info
+
+//esto lo escribo yo:
+//declaracion de funcion:
+function nuevaFuncion () {
+    console.log('desde nueva funcion');
+}
+//con parametros:
+function nuevaFuncion(id) {
+    console.log('desde nueva funcion',id)
+}
