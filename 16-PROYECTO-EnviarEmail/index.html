@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envio de Emails</title>
     <link rel="stylesheet" href="dist/app.css">
+    <link rel="stylesheet" href="dist/spiner.css">
 </head>
 <body class="min-h-screen bg-slate-300">
     <div class="max-w-3xl mx-auto p-10">
@@ -15,6 +16,11 @@
                 <div class="flex flex-col space-y-2">
                     <label for="email" class="font-regular font-medium">Email:</label>
                     <input id="email" type="email" name="email" placeholder="Email Destino, ej: mkt@empresa.com" class="border border-gray-300 px-3 py-2 rounded-lg"  />
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <label for="extra" class="font-regular font-medium">Destinatario Extra:</label>
+                    <input id="extra" type="email" name="extra" placeholder="Email Destinatario Extra, ej: mkt@empresa.com" class="border border-gray-300 px-3 py-2 rounded-lg"  />
                 </div>
 
                 <div class="flex flex-col space-y-2">
@@ -50,6 +56,21 @@
                     </button>
                 </div>           
             </form>
+
+            <div id="spiner" class="hidden justify-center mt-10">
+                <div class="sk-cube-grid">
+                    <div class="sk-cube sk-cube1"></div>
+                    <div class="sk-cube sk-cube2"></div>
+                    <div class="sk-cube sk-cube3"></div>
+                    <div class="sk-cube sk-cube4"></div>
+                    <div class="sk-cube sk-cube5"></div>
+                    <div class="sk-cube sk-cube6"></div>
+                    <div class="sk-cube sk-cube7"></div>
+                    <div class="sk-cube sk-cube8"></div>
+                    <div class="sk-cube sk-cube9"></div>
+                </div>
+            </div>
+
         </div>
     </div>
 
