@@ -166,8 +166,7 @@ document.addEventListener('DOMContentLoaded', function (){
         if (confirm(mensaje) == false) {
             return;
           } //PROXIMA VEZ AÑADIR CSS QUE TENGA VENTANA DE ADVERTENCIA CON SI O NO
-          resetFormulario();
-          resetExtra();     
+          resetFormulario();  
      }
      //
 
@@ -218,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function (){
         extraEmail.extra = '';
         
         formulario.reset();
+        limpiarAlerta(document);
         comprobarEmail(); //que no se pueda enviar una vez vaciamos el objeto
     }
 
@@ -236,6 +236,12 @@ document.addEventListener('DOMContentLoaded', function (){
                 mostrarAlerta('El extra no es válido', e.target.parentElement) //si es false
                 extraEmail[e.target.name] = ''; //reiniciamos el objeto, borramos el objeto (q no se guarde cuando me salgo)
                // comprobarEmail();
+                comprobarExtra();
+                return;
+            }
+            else if(e.target.id === 'extra' && e.target.value.length > 60) {
+                mostrarAlerta('Máximo caracteres alcanzado', e.target.parentElement);
+                extraEmail[e.target.name] = '';
                 comprobarExtra();
                 return;
             }
