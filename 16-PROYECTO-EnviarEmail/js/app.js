@@ -203,15 +203,15 @@ document.addEventListener('DOMContentLoaded', function (){
         btnSubmit.disabled = false; //eliminar clase disabled
     }
 
-    function comprobarExtra(){
-        if(Object.values(extraEmail).includes('')){ //retorna true si al menos uno esta vacio
-            btnSubmit.classList.add('opacity-50'); //eliminar clase opacity-50
-             btnSubmit.disabled = true; 
-            return; //le agregamos return en vez del else
-          }
-        btnSubmit.classList.remove('opacity-50'); //eliminar clase opacity-50
-        btnSubmit.disabled = false; //eliminar clase disabled
-    }
+    // function comprobarExtra(){
+    //     if(Object.values(extraEmail).includes('')){ //retorna true si al menos uno esta vacio
+    //         btnSubmit.classList.add('opacity-50'); //eliminar clase opacity-50
+    //          btnSubmit.disabled = true; 
+    //         return; //le agregamos return en vez del else
+    //       }
+    //     btnSubmit.classList.remove('opacity-50'); //eliminar clase opacity-50
+    //     btnSubmit.disabled = false; //eliminar clase disabled
+    // }
 
     //se resetea porque en button hay un atributo "reset" en el HTML, pero queremos preguntarle al usuario si realmente quiere eliminar los campos:
     function resetFormulario(){
@@ -219,28 +219,28 @@ document.addEventListener('DOMContentLoaded', function (){
         email.email = '';
         email.asunto = '';
         email.mensaje = '';
+        extraEmail.extra = '';
         
         formulario.reset();
         comprobarEmail(); //que no se pueda enviar una vez vaciamos el objeto
-        
     }
 
-    function resetExtra(){
-        extraEmail.extra = '';
-        formulario.reset();
-        comprobarExtra();
-    }
+    // function resetExtra(){
+    //     extraEmail.extra = '';
+    //     formulario.reset();
+    //     comprobarEmail();
+    // }
 
     function validarExtra(e) {
         console.log(e.target.id);
-        if((e.target.id.trim() === 'extra') === ''){
-            return;
+        if(e.target.value.trim() === ''){
+            limpiarAlerta(e.target.parentElement);
         } else {
             if(e.target.id === 'extra' && !validarEmail(e.target.value)){
                 mostrarAlerta('El extra no es válido', e.target.parentElement) //si es false
                 extraEmail[e.target.name] = ''; //reiniciamos el objeto, borramos el objeto (q no se guarde cuando me salgo)
-                //comprobarEmail();
-                comprobarExtra();
+                comprobarEmail();
+               // comprobarExtra();
                 return;
             }
         }
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function (){
         limpiarAlerta(e.target.parentElement);
         
         extraEmail[e.target.name] = e.target.value.trim().toLowerCase(); 
-        comprobarExtra(extraEmail);
+        comprobarEmail(extraEmail);
         console.log(email);
         console.log(extraEmail);
 
