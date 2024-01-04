@@ -1,0 +1,13 @@
+.parrafoCustom {
+    align-items: center;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+.alerta-error {
+    color: red;
+}
+
+.alerta-exito {
+    color: green;
+}

@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     btnReset.addEventListener('click', function(e){ //hacemos un callback en vez de funcion porque es poco codigo
         e.preventDefault(); //no reinicio formulario al apretar "Reset"
-        mostrarAlertaPregunta('esta seguro de eliminar los campos?');
+        mostrarAlertaPregunta();
         //resetFormulario();
     });
 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function (){
         //     console.log('si hay algo...');
         // }
         }
-       
+        
          //validaciones hechas por mi
          if(e.target.id === 'email' && e.target.value.length > 60) {
             mostrarAlerta('Máximo caracteres alcanzado', e.target.parentElement);
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
         //console.log('error');
         //Mostrar alerta en html:
-        const error = document.createElement('P');
+       const error = document.createElement('P');
        // error.textContent = 'Hubo un error...'; //con innerHTML no escapa los datos, es inseguro y se arriesga a ataques de seguridad informatica
        error.textContent = mensaje;
        //console.log(error);
@@ -162,14 +162,31 @@ document.addEventListener('DOMContentLoaded', function (){
     }
 
     //codigo hecho por mi
-    function mostrarAlertaPregunta(mensaje) {
-        if (confirm(mensaje) == false) {
-            return;
-          } //PROXIMA VEZ AÑADIR CSS QUE TENGA VENTANA DE ADVERTENCIA CON SI O NO
-          resetFormulario();  
+    function mostrarAlertaPregunta() {
+        Swal.fire({
+            title: "¿Está seguro?",
+            text: "El contenido de los campos se eliminará",
+            cancelButtonText: "Cancelar",
+            icon: "warning",
+            iconColor: "#FF0000",
+            showCancelButton: true,
+            confirmButtonColor: "#1FB846",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Eliminar"
+          }).then(result => {
+            if (result.isConfirmed) {
+              resetFormulario();
+              limpiarAlerta(document);
+              limpiarAlerta(result.target.parentElement);
+              Swal.fire({
+                title: "Eliminado",
+                text: "Los campos han sido eliminados",
+                icon: "success"
+              });
+            }
+          });
      }
-     //
-
+    
     function limpiarAlerta(referencia) {
         //console.log('desde limpiar alerta');
         //comprueba si ya existe una alerta
