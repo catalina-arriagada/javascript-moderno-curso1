@@ -49,7 +49,7 @@ function mostrarError(mensaje){
 }
 
 function consultarAPI(ciudad, pais){
-    const appId = 'e6e5bb82c5d992e7400f5e0f4cc0f8d7';
+    const appId = ''; //COLOCAR TU API KEY
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
 
     Spinner(); //https://tobiasahlin.com/spinkit/
