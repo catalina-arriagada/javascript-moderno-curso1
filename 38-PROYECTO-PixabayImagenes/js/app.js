@@ -1,10 +1,12 @@
 const resultado = document.querySelector('#resultado');
 const formulario = document.querySelector('#formulario');
+const paginacionDiv = document.querySelector('#paginacion');
 
 //cuantos registros quiero que traiga la api por pagina de paginacion
-const registroPorPagina = 40; 
+const registrosPorPagina = 40; 
 let totalPaginas; //cada vez q hago consulta valor cambia
 let iterador; //generador
+let paginaActual;
 
 window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
@@ -19,7 +21,7 @@ function validarFormulario(e){
         return;
     }
     //ir a la api de pixabay:
-    buscarImagenes(terminoBusqueda);
+    buscarImagenes();
 }
 
 function mostrarAlerta(mensaje){
@@ -47,9 +49,12 @@ function mostrarAlerta(mensaje){
 
 //llamar API
 //le pasamos el termino de la busqueda:
-function buscarImagenes(termino){
-    const key = '41658461-434fd9820321386c26691ddf0'; //TU API KEY
-    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=28`;
+function buscarImagenes(){
+    const termino = document.querySelector('#termino').value;
+
+    const key = ''; //TU API KEY
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}&page=${paginaActual}`;
+    
     //comprobar 
     //console.log(url)
     fetch(url)
@@ -73,13 +78,14 @@ function *crearPaginador(total){
 function calcularPaginas(total){
     //la division no da numero entero, el numero de paginacion debe ser entero
     //return parseInt(Math.ceil(500/30)); //pasa a entero y redondea
-    return parseInt(Math.ceil(total/registroPorPagina)); //pasa a entero y redondea hacia arriba
+    return parseInt(Math.ceil(total/registrosPorPagina)); //pasa a entero y redondea hacia arriba
     //nos pasa cantidad de paginas de acuerdo al termino q estamos buscando
 }
 
 function mostrarImagenes(imagenes){
     console.log(imagenes);
     limpiarHTML(resultado);
+    limpiarHTML(paginacionDiv);
 
     //iterar sobre las imagenes
     imagenes.forEach(imagen => {
@@ -112,5 +118,28 @@ function limpiarHTML(limpiar){
 //generador 
 function imprimirPaginador(){ 
     iterador = crearPaginador(totalPaginas);
-    //console.log(iterador.next())//nos esta generando las 13 paginas
+    //console.log(iterador.next())//cuantas paginas esta generando segun busqueda
+    //console.log(iterador.next().value);//en que pagina estoy
+    //console.log(iterador.next().done);//si ya llegue al final del iterador//true o false
+
+    while(true){
+        const {value, done} = iterador.next(); //cuantas paginas tiene en total
+        if(done) return;
+        //caso contrario, genera boton por cada elemento en el generador
+        const boton = document.createElement('A');
+        boton.href = '#'; //donde lleva el enlace
+        boton.dataset.pagina = value; //value: 1, 2 3,...
+        boton.textContent = value;
+        boton.classList.add('siguiente', 'bg-yellow-400','px-4', 'py-1', 'mr-2', 'font-bold', 'mb-4', 'uppercase', 'rounded');
+        
+        boton.onclick = () => {
+            //console.log(value)
+            paginaActual = value;
+           // console.log(paginaActual)
+           buscarImagenes();
+        }
+        
+        paginacionDiv.appendChild(boton);
+    }
+
 }
