@@ -356,12 +356,127 @@ function formularioPropinas(){
     heading.classList.add('my-4','text-center');
     heading.textContent = 'Propina';
 
+    //radio button tipo input 10%
+    const radio10 = document.createElement('input');
+    radio10.type = 'radio';
+    radio10.name = 'propina';
+    radio10.value= '10';
+    radio10.classList.add('form-ckeck-input');
+    radio10.onclick = calcularPropina;
+    //label:
+    const radio10Label = document.createElement('label');
+    radio10Label.textContent = '10%';
+    radio10Label.classList.add('form-ckeck-label');
+    //div
+    const radio10Div =  document.createElement('div');
+    radio10Div.classList.add('form-check');
+
+    //radio button tipo input 25%
+    const radio25 = document.createElement('input');
+    radio25.type = 'radio';
+    radio25.name = 'propina';
+    radio25.value= '25';
+    radio25.classList.add('form-ckeck-input');
+    radio25.onclick = calcularPropina;
+    //label:
+    const radio25Label = document.createElement('label');
+    radio25Label.textContent = '25%';
+    radio25Label.classList.add('form-ckeck-label');
+    //div
+    const radio25Div =  document.createElement('div');
+    radio25Div.classList.add('form-check');
+    
+    //radio button tipo input 50%
+    const radio50 = document.createElement('input');
+    radio50.type = 'radio';
+    radio50.name = 'propina';
+    radio50.value= '50';
+    radio50.classList.add('form-ckeck-input');
+    radio50.onclick = calcularPropina;
+    //label:
+    const radio50Label = document.createElement('label');
+    radio50Label.textContent = '50%';
+    radio50Label.classList.add('form-ckeck-label');
+    //div
+    const radio50Div =  document.createElement('div');
+    radio50Div.classList.add('form-check');
+
+
+    radio10Div.appendChild(radio10);
+    radio10Div.appendChild(radio10Label);
+
+    radio25Div.appendChild(radio25);
+    radio25Div.appendChild(radio25Label);
+
+    radio50Div.appendChild(radio50);
+    radio50Div.appendChild(radio50Label);
+    
+    //agregar al div principal
     formularioDiv.appendChild(heading);
+    formularioDiv.appendChild(radio10Div);
+    formularioDiv.appendChild(radio25Div);
+    formularioDiv.appendChild(radio50Div);
+
+    //agregar al formulario
     formulario.appendChild(formularioDiv);
-    contenido.appendChild(formularioDiv);
+    contenido.appendChild(formulario);
+    
     
 }
 
-    
+function calcularPropina(){
+    //console.log('desde calcular');
+    const {pedido} = cliente;
+    let subtotal = 0;
+
+    pedido.forEach(articulo => {
+        subtotal += articulo.cantidad * articulo.precio; //Calcular total sin propina
+    })
+    //console.log(subtotal)
+
+    //seleccionar radio que selecciono el usuario
+    const propinaSeleccionada = document.querySelector('[name="propina"]:checked').value;
+    //console.log(propinaSeleccionada)// 10, 25 50
+
+    //convertir de string a numero
+    //calcular propina
+    const propina = ((subtotal * parseInt(propinaSeleccionada))/100);//regla de 3 para sacar porcentaje
+    //console.log(propina)
+
+    //calcular total
+    const total = subtotal + propina;
+
+   // console.log(total)
+   mostrarTotalHTML(subtotal, total, propina);
+
+}
+
+function mostrarTotalHTML(subtotal, total, propina){
+    const formulario = document.querySelector('.formulario > div');
+    //subtotal
+    const subtotalParrafo = document.createElement('p');
+    subtotalParrafo.classList.add('fs-3', 'fw-bold', 'mt-5');
+    subtotalParrafo.textContent= 'Subtotal Consumo: ';
+
+    const subtotalSpan = document.createElement('span');
+    subtotalSpan.classList.add('fw-formal');
+    subtotalSpan.textContent = `$${subtotal}`;
+
+    //total a pagar
+    const divTotales = document.createElement('div');
+    divTotales.classList.add('total-pagar');
+
+
+    subtotalParrafo.appendChild(subtotalSpan);
+    divTotales.appendChild(subtotalParrafo);
+    formulario.appendChild(divTotales);
+
+}
+
+
+
+
+//json-server --watch db.json --port 4000
+//http://localhost:4000/platillos/
 
 
