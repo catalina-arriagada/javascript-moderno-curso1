@@ -455,20 +455,51 @@ function mostrarTotalHTML(subtotal, total, propina){
     const formulario = document.querySelector('.formulario > div');
     //subtotal
     const subtotalParrafo = document.createElement('p');
-    subtotalParrafo.classList.add('fs-3', 'fw-bold', 'mt-5');
+    subtotalParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
     subtotalParrafo.textContent= 'Subtotal Consumo: ';
 
     const subtotalSpan = document.createElement('span');
     subtotalSpan.classList.add('fw-formal');
     subtotalSpan.textContent = `$${subtotal}`;
 
+    //propina
+    const propinaParrafo = document.createElement('p');
+    propinaParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
+    propinaParrafo.textContent= 'Propina: ';
+
+    const propinaSpan = document.createElement('span');
+    propinaSpan.classList.add('fw-formal');
+    propinaSpan.textContent = `$${propina}`;
+
+    //total
+    const totalParrafo = document.createElement('p');
+    totalParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
+    totalParrafo.textContent= 'Total a Pagar: ';
+
+    const totalSpan = document.createElement('span');
+    totalSpan.classList.add('fw-formal');
+    totalSpan.textContent = `$${total}`;
+
+
     //total a pagar
     const divTotales = document.createElement('div');
-    divTotales.classList.add('total-pagar');
+    divTotales.classList.add('total-pagar', 'my-5');
 
 
     subtotalParrafo.appendChild(subtotalSpan);
+    propinaParrafo.appendChild(propinaSpan);
+    totalParrafo.appendChild(totalSpan);
+
+    //Eliminar resultados repetidos
+    const totalPagarDiv = document.querySelector('.total-pagar');
+    if(totalPagarDiv){
+        totalPagarDiv.remove();
+    }
+
     divTotales.appendChild(subtotalParrafo);
+    divTotales.appendChild(propinaParrafo);
+    divTotales.appendChild(totalParrafo);
+
     formulario.appendChild(divTotales);
 
 }
