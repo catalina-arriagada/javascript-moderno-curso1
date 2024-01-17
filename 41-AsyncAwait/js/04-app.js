@@ -28,6 +28,9 @@ const app = async () => {
         const respuesta = await Promise.all([descargarNuevosClientes(), descargarNuevosPedidos()]);//se puede agregar como arreglo cualquier funcion
         //van a ejecutarse las 2 lineas al mismo tiempo
         console.log(respuesta)
+        console.log(respuesta[0])//descargando clientes
+        console.log(respuesta[1])//descargando pedidos
+    //se descargan ambos al mismo tiempo
     } catch (error) {
         console.log(error);
     }
