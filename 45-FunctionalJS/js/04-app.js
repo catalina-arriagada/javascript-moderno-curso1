@@ -8,3 +8,11 @@ const carrito = [
     { nombre: 'Bocinas', precio: 300},
     { nombre: 'Laptop', precio: 800},
 ];
+
+//Arreglo q liste nombre de productos
+const obtenerNombres = producto => {
+    return producto.nombre;
+}
+
+const resultado = carrito.map(obtenerNombres);
+console.log(resultado);

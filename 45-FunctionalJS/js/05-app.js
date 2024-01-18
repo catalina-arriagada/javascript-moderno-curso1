@@ -8,3 +8,13 @@ const carrito = [
     { nombre: 'Bocinas', precio: 300},
     { nombre: 'Laptop', precio: 800},
 ];
+
+//En programacion funcional se recomienda hacer un codigo corto
+
+const obtenerNombres = p => p.nombre;
+const r = carrito.map(obtenerNombres);
+console.log(r);
+
+const mayor400 = producto => producto.precio > 400;
+const resultado = carrito.filter(mayor400);
+console.log(resultado);
