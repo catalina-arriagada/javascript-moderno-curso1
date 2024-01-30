@@ -1,0 +1,14 @@
+//configuracion q debe tener este proyecto:
+{
+    "presets": [
+        [
+            "@babel/preset-env", {
+                "targets": {
+                    //que versiones va a soportar
+                    "node": "current" //asi usamos node en el navegador, asi le añadimos imports 
+
+                }
+            }
+        ]
+    ]
+}

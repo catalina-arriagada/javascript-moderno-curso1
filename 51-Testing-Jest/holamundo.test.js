@@ -1,0 +1,1 @@
+//si se nombra el archivo como .test o una carpeta como __tests__ en plural, jest la va a reconocer para hacer las pruebas con npm test o npm t o npm run test en la terminal 

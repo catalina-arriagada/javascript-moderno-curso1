@@ -17,3 +17,35 @@
 //Herramientas para testing
 //Jest: cada tecnologia tiene sus propias herramientas para hacer Testing, pero una muy popular es Jest. hay versiones para VueJS, Angular, TypeScript, Node, React, etc. Es necesario tener instalado Node.js
 //Cypress: es una herramienta para hacer testings End to End: simula clicks y que se ve en pantalla.
+
+//Testing sin herramientas: console.log
+//Ejemplo:
+//Probar 2 valores:
+function suma(a,b){
+    return a+b;
+}
+
+function restar(a,b){
+    return a-b;
+}
+
+let resultado = suma(1,2);
+let esperado = 3; //lo q esperamos de esta prueba //en Jest es expect
+
+if(resultado !== esperado){
+    console.log(`El resultado '${resultado}' es diferente a lo esperado '${esperado}', no ha pasado la prueba`);
+}else{
+    console.log('la prueba paso correctamente');
+}
+
+//los frameworks de testing tienen estas funciones ya implementadas
+
+resultado = restar(10,3);
+esperado = 5;
+
+if(resultado !== esperado){
+    console.log(`El resultado '${resultado}' es diferente a lo esperado '${esperado}', no ha pasado la prueba`);
+}else{
+    console.log('la prueba paso correctamente');
+}
+

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`probar clase Citas test para agregar nueva cita 1`] = `
+Citas {
+  "citas": [
+    {
+      "fecha": "10-12-10",
+      "hora": "10:30",
+      "id": 1706622262169,
+      "mascota": "Hook",
+      "propietario": "j",
+      "sintomas": "aaa",
+      "telefono": "111",
+    },
+  ],
+}
+`;
