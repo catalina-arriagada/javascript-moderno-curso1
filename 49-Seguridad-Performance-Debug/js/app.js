@@ -1,3 +1,8 @@
+//Ofuscar codigo: hacerlo ilegible para hacerlo mas seguro: hay varias web que lo hacen https://www.javascriptobfuscator.com/
+//Si intentamos desofuscar solo ordena el codigo https://beautifier.io/
+//esta ofuscacion solo sirve en el lado del cliente, no en el servidor
+
+//Medir Performance: cuanto tarda en ejecutarse un codigo, en este caso este:
 const criptomonedasSelect = document.querySelector('#criptomonedas');
 const monedaSelect = document.querySelector('#moneda');
 const formulario = document.querySelector('#formulario');
@@ -37,15 +42,31 @@ function consultarCriptomonedas() {
 // llena el select 
 function selectCriptomonedas(criptomonedas) {
 
-    criptomonedas.forEach( cripto => {
-        const { FullName, Name } = cripto.CoinInfo;
+    //Existe funcion q podemos usar para medir cuanto tiempo tarda en generarse todas estas funciones:
+    //Conocer el tiempo de ejecucion del codigo o porcion de codigo
+    const inicio = performance.now(); //reporta el tiempo actual
+
+    // criptomonedas.forEach( cripto => {
+    //     const { FullName, Name } = cripto.CoinInfo;
+    //     const option = document.createElement('option');
+    //     option.value = Name;
+    //     option.textContent = FullName;
+    //     // insertar el HTML
+    //     criptomonedasSelect.appendChild(option);
+    // });
+
+    for(let i=0; i<criptomonedas.length; i++){
+        const { FullName, Name } = criptomonedas[i].CoinInfo;
         const option = document.createElement('option');
         option.value = Name;
         option.textContent = FullName;
         // insertar el HTML
         criptomonedasSelect.appendChild(option);
-    });
+    } //(el for es mas rapido q el foreach)
 
+    //cuanto tiempo tarda en ejecutarse el forEach anterior?:
+    const fin = performance.now();
+    console.log(fin - inicio);//con el for sale mas rapido, menos milisegundos casi siempre
 }
 
 
@@ -89,6 +110,9 @@ function mostrarAlerta(mensaje) {
 
 function consultarAPI() {
 
+    //medir cuanto tarda en llamar a una api
+    const inicio = performance.now();
+
     const { moneda, criptomoneda} = objBusqueda;
 
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
@@ -101,6 +125,10 @@ function consultarAPI() {
             mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
         });
 
+    //medir performance api
+    const fin = performance.now();
+    console.log(fin - inicio);
+
 }
 
 function mostrarCotizacionHTML(cotizacion) {
@@ -111,7 +139,7 @@ function mostrarCotizacionHTML(cotizacion) {
     const  { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE } = cotizacion;
 
 
-    debugger;
+    debugger;// muestra todas las variables disponibles y sus valores en el Scope de Chrome (Variables: PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE )
 
     const precio = document.createElement('p');
     precio.classList.add('precio');

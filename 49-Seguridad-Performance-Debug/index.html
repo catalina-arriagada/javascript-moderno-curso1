@@ -52,7 +52,10 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js" async></script>
+    <!-- Async: Descarga y ejecuta el codigo script inmediatamente. si aun no tengo la respuesta de la api no se manda a llamar el script y no carga las opciones del js. Sirve cuando tenemos codigo q no deseamos modificar-->
+    <script src="js/app.js" defer></script>
+    <!--defer: Descarga pero no ejecuta el script hasta que el html este listo: gana mas en performance (rapidez)-->
     
 </body>
 </html>
