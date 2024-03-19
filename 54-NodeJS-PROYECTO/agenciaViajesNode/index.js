@@ -6,7 +6,9 @@ import express from 'express';
 import router from './routes/index.js';
 
 //importar host:
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
+// dotenv.config()
+// console.log(process.env.DATABASE)
 
 //importar BD:
 import db from './config/db.js';
